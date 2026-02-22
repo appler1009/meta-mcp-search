@@ -5,6 +5,9 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+    "meta-mcp-search": "./dist/index.js"
+  },
   "exports": {
     ".": {
       "import": "./dist/index.js",
@@ -18,7 +21,8 @@
     "clean": "rm -rf dist",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "npm run clean && npm run build"
   },
   "keywords": [
     "mcp",
@@ -28,6 +32,14 @@
   ],
   "author": "appler1009",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/appler1009/meta-mcp-search.git"
+  },
+  "bugs": {
+    "url": "https://github.com/appler1009/meta-mcp-search/issues"
+  },
+  "homepage": "https://github.com/appler1009/meta-mcp-search#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.5.0",
     "@xenova/transformers": "^2.17.2",
@@ -41,5 +53,10 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
 }

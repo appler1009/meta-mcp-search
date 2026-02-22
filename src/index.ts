@@ -1,10 +1,11 @@
+#!/usr/bin/env node
 /**
  * Meta MCP Search - Main entry point
  * 
  * A single MCP server exposing search_tool that routes to 1000+ local MCP tools via semantic search.
  * 
  * Usage:
- *   1. As MCP server (stdio): node dist/index.js
+ *   1. As MCP server (stdio): npx meta-mcp-search
  *   2. As imported module: import { MetaMcpSearch, searchToolsDirect } from 'meta-mcp-search';
  */
 

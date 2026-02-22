@@ -12,20 +12,28 @@ A single MCP server exposing `search_tool` that routes to 1000+ local MCP tools 
 ## Installation
 
 ```bash
-npm install
-npm run build
+npm install meta-mcp-search
 ```
 
 ## Usage
 
-### As MCP Server (stdio)
+### As MCP Server (stdio) - Quick Start
+
+The easiest way to run the MCP server is with npx:
 
 ```bash
-npm start
+npx meta-mcp-search
+```
+
+Or if installed globally:
+
+```bash
+npm install -g meta-mcp-search
+meta-mcp-search
 ```
 
 The server will:
-1. Load tools from `config.json` or `tools-manifest.json`
+1. Load tools from `config.json` or `tools-manifest.json` in the current directory
 2. Build embeddings for all tools
 3. Listen on stdio for MCP requests
 
@@ -197,7 +205,34 @@ npm run dev
 
 # Clean build artifacts
 npm run clean
+
+# Run tests
+npm test
+
+# Run tests with coverage
+npm run test:coverage
 ```
+
+## Publishing to npm
+
+This package is published to npm. To publish a new version:
+
+```bash
+# 1. Make sure you're logged in to npm
+npm login
+
+# 2. Update the version in package.json
+npm version patch  # or minor, or major
+
+# 3. Build and test
+npm run build
+npm test
+
+# 4. Publish
+npm publish
+```
+
+The `prepublishOnly` script will automatically run `clean` and `build` before publishing.
 
 ## Requirements
 
