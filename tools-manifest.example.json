@@ -1,0 +1,255 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2024-01-15T10:00:00Z",
+  "tools": [
+    {
+      "name": "google_drive_list",
+      "description": "List files and folders in Google Drive. Returns a paginated list of files with their names, IDs, and metadata.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "folderId": {
+            "type": "string",
+            "description": "ID of the folder to list. Use 'root' for the root folder."
+          },
+          "pageSize": {
+            "type": "number",
+            "description": "Maximum number of files to return",
+            "default": 100
+          }
+        },
+        "required": ["folderId"]
+      },
+      "serverKey": "google-drive"
+    },
+    {
+      "name": "google_drive_read",
+      "description": "Read the content of a file from Google Drive. Supports text files, Google Docs, and exports other formats.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "fileId": {
+            "type": "string",
+            "description": "ID of the file to read"
+          }
+        },
+        "required": ["fileId"]
+      },
+      "serverKey": "google-drive"
+    },
+    {
+      "name": "slack_send_message",
+      "description": "Send a message to a Slack channel or user. Supports markdown formatting.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "description": "Channel ID or user ID to send message to"
+          },
+          "text": {
+            "type": "string",
+            "description": "Message text to send"
+          }
+        },
+        "required": ["channel", "text"]
+      },
+      "serverKey": "slack"
+    },
+    {
+      "name": "slack_list_channels",
+      "description": "List all channels in the Slack workspace. Returns public channels the bot has access to.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "excludeArchived": {
+            "type": "boolean",
+            "description": "Exclude archived channels",
+            "default": true
+          }
+        }
+      },
+      "serverKey": "slack"
+    },
+    {
+      "name": "github_create_issue",
+      "description": "Create a new issue in a GitHub repository. Requires write access to the repository.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "owner": {
+            "type": "string",
+            "description": "Repository owner (username or organization)"
+          },
+          "repo": {
+            "type": "string",
+            "description": "Repository name"
+          },
+          "title": {
+            "type": "string",
+            "description": "Issue title"
+          },
+          "body": {
+            "type": "string",
+            "description": "Issue body/description (markdown supported)"
+          }
+        },
+        "required": ["owner", "repo", "title"]
+      },
+      "serverKey": "github"
+    },
+    {
+      "name": "github_search_code",
+      "description": "Search for code across GitHub repositories. Uses GitHub's code search API.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query (supports GitHub search syntax)"
+          }
+        },
+        "required": ["query"]
+      },
+      "serverKey": "github"
+    },
+    {
+      "name": "filesystem_read_file",
+      "description": "Read the contents of a file from the local filesystem. Returns the file content as text.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Path to the file to read"
+          }
+        },
+        "required": ["path"]
+      },
+      "serverKey": "filesystem"
+    },
+    {
+      "name": "filesystem_write_file",
+      "description": "Write content to a file on the local filesystem. Creates the file if it doesn't exist.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Path to the file to write"
+          },
+          "content": {
+            "type": "string",
+            "description": "Content to write to the file"
+          }
+        },
+        "required": ["path", "content"]
+      },
+      "serverKey": "filesystem"
+    },
+    {
+      "name": "database_query",
+      "description": "Execute a SQL query on the connected database. Supports SELECT, INSERT, UPDATE, DELETE operations.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sql": {
+            "type": "string",
+            "description": "SQL query to execute"
+          },
+          "params": {
+            "type": "array",
+            "description": "Parameters for parameterized queries",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["sql"]
+      },
+      "serverKey": "database"
+    },
+    {
+      "name": "web_search",
+      "description": "Search the web for information. Returns relevant search results with titles, URLs, and snippets.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query"
+          },
+          "numResults": {
+            "type": "number",
+            "description": "Number of results to return",
+            "default": 10
+          }
+        },
+        "required": ["query"]
+      },
+      "serverKey": "web"
+    },
+    {
+      "name": "calendar_create_event",
+      "description": "Create a new event in the calendar. Supports specifying title, time, location, and attendees.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Event title"
+          },
+          "startTime": {
+            "type": "string",
+            "description": "Event start time (ISO 8601 format)"
+          },
+          "endTime": {
+            "type": "string",
+            "description": "Event end time (ISO 8601 format)"
+          },
+          "location": {
+            "type": "string",
+            "description": "Event location"
+          },
+          "description": {
+            "type": "string",
+            "description": "Event description"
+          }
+        },
+        "required": ["title", "startTime", "endTime"]
+      },
+      "serverKey": "calendar"
+    },
+    {
+      "name": "email_send",
+      "description": "Send an email to one or more recipients. Supports HTML content and attachments.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "to": {
+            "type": "array",
+            "description": "Recipient email addresses",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subject": {
+            "type": "string",
+            "description": "Email subject"
+          },
+          "body": {
+            "type": "string",
+            "description": "Email body (text or HTML)"
+          },
+          "isHtml": {
+            "type": "boolean",
+            "description": "Whether body is HTML",
+            "default": false
+          }
+        },
+        "required": ["to", "subject", "body"]
+      },
+      "serverKey": "email"
+    }
+  ]
+}

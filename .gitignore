@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Test coverage
+coverage/
+
+# Test temp files
+test-temp/
+
+# Cache
+.cache/
+.npm/
+*.tsbuildinfo
+
+# Model cache (transformers.js downloads models here)
+models/
+.transformers/
+
+# Config files with sensitive data
+config.json
+tools-manifest.json
+
+# Keep example files
+!config.example.json
+!tools-manifest.example.json
