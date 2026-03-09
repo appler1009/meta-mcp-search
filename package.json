@@ -1,6 +1,6 @@
 {
   "name": "meta-mcp-search",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Single MCP server exposing search_tool that routes to 1000+ local MCP tools via semantic search",
   "type": "module",
   "main": "dist/index.js",
