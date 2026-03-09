@@ -3,15 +3,16 @@
  */
 
 import { pipeline, env, Tensor } from '@xenova/transformers';
+import { cpus } from 'os';
 import type { ToolDef, ScoredTool, SearchResult, InitResult } from './types.js';
 
-// Configure transformers.js to use local cache
+// Configure transformers.js
 env.allowLocalModels = false;
 
 /**
  * Default embedding model
  */
-const DEFAULT_MODEL = 'Xenova/all-MiniLM-L6-v2';
+const DEFAULT_MODEL = 'Xenova/gte-small';
 
 /**
  * Search engine class that handles tool embeddings and semantic search
@@ -40,8 +41,11 @@ export class SearchEngine {
   async initModel(): Promise<void> {
     if (this.embedder) return;
     
+    // Set thread count to match CPU cores before loading the WASM backend
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (env as any).backends.onnx.wasm.numThreads = cpus().length;
     console.error(`[search] Loading embedding model: ${this.modelName}`);
-    this.embedder = await pipeline('feature-extraction', this.modelName);
+    this.embedder = await pipeline('feature-extraction', this.modelName, { quantized: true });
     console.error('[search] Embedding model loaded');
   }
 

@@ -5,7 +5,7 @@ import type { ToolDef } from '../src/types.js';
 // Mock the transformers pipeline
 vi.mock('@xenova/transformers', () => ({
   pipeline: vi.fn().mockResolvedValue(mockEmbedder),
-  env: { allowLocalModels: false },
+  env: { allowLocalModels: false, backends: { onnx: { wasm: { numThreads: 1 } } } },
   Tensor: class Tensor {
     data: Float32Array;
     constructor(data: Float32Array) {
@@ -73,7 +73,7 @@ describe('search', () => {
     describe('constructor', () => {
       it('should create instance with default model', () => {
         const se = new SearchEngine();
-        expect(se.getModelName()).toBe('Xenova/all-MiniLM-L6-v2');
+        expect(se.getModelName()).toBe('Xenova/gte-small');
       });
 
       it('should create instance with custom model', () => {
@@ -84,7 +84,7 @@ describe('search', () => {
 
     describe('getModelName', () => {
       it('should return the model name', () => {
-        expect(engine.getModelName()).toBe('Xenova/all-MiniLM-L6-v2');
+        expect(engine.getModelName()).toBe('Xenova/gte-small');
       });
     });
 

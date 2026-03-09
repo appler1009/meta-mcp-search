@@ -89,7 +89,7 @@ export interface MetaMcpSearchOptions {
   configPath?: string;
   /** Pre-loaded tools array (alternative to configPath) */
   tools?: ToolDef[];
-  /** Model name for embeddings (default: 'Xenova/all-MiniLM-L6-v2') */
+  /** Model name for embeddings (default: 'Xenova/gte-small') */
   embeddingModel?: string;
 }
 
