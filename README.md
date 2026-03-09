@@ -4,7 +4,7 @@ A single MCP server exposing `search_tool` that routes to 1000+ local MCP tools 
 
 ## Features
 
-- **Semantic Search**: Uses `all-MiniLM-L6-v2` embeddings via `@xenova/transformers` for fast, accurate tool discovery
+- **Semantic Search**: Uses `gte-small` embeddings (8-bit quantized, multi-threaded) via `@xenova/transformers` for fast, accurate tool discovery
 - **Hybrid Search**: Cosine similarity on query vs tool name + description
 - **MCP Protocol**: Full implementation of Model Context Protocol with stdio transport
 - **Dual Usage**: Can be used as an MCP server or imported directly as a TypeScript module
